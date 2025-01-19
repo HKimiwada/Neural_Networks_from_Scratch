@@ -1,3 +1,4 @@
+# Practice code -> Creating simple neurons (not part of NN)
 import numpy as np
 
 # Simple Neuron 
