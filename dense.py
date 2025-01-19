@@ -19,13 +19,14 @@ class Layer_Dense:
         # Forward pass (Calculating output from input, weights, biases)
         self.outputs = np.dot(inputs, self.weights) + self.biases
         
-# Testing Dense Layer Class:
-# Create Dataset
-X, y = spiral_data(samples=100, classes=3) # generates 100 samples of coordinates in form: [X,Y]
-# Create Dense Layer (2 input features: X, Y ) (3 neurons)
-dense_layer_test = Layer_Dense(2,3)
-# Perform forward pass of training data through layer
-dense_layer_test.forward(X)
-# Output should be 100 rows x 3 columns (each column represents the output of each neuron, each row represents each data point)
-# First few examples:
-print(dense_layer_test.outputs[:5]) # 0 through 4
+if __name__ == "__main__":
+    # Testing Dense Layer Class:
+    # Create Dataset
+    X, y = spiral_data(samples=100, classes=3) # generates 100 samples of coordinates in form: [X,Y]
+    # Create Dense Layer (2 input features: X, Y ) (3 neurons)
+    dense_layer_test = Layer_Dense(2,3)
+    # Perform forward pass of training data through layer
+    dense_layer_test.forward(X)
+    # Output should be 100 rows x 3 columns (each column represents the output of each neuron, each row represents each data point)
+    # First few examples:
+    print(dense_layer_test.outputs[:5]) # 0 through 4
