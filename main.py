@@ -1,27 +1,27 @@
 # Creating Neural Network from scratch (with only numpy for linear algebra)
-# main.py is for testing the functionality of numpy and python
+# Create Mock NN (Inputs+Neurons+Relu+Neurons+Softmax)
 import numpy as np
+import nnfs
+from nnfs.datasets import spiral_data
 
-# np.sum(A) = np.sum(A, axis=None) -> Adds all elememts and returns scalar
-# np.sum(A, axis=0) -> Adds together same elements each row: A_11 + B_21 + C_31, A_12 + B_22 + C_32
-# np.sum(A, axis=1) -> Adds together same elements of column 
+from dense import Layer_Dense
+from activation_function import ReLu_Activation_Function
+from activation_function import Softmax_Activation_Function
 
-# Broadcasting allows for adding biases: [1,2,3] -> [[1,2,3],[1,2,3],[1,2,3]] -> Extends by maintaing shape
-A = [[1,2,3],[4,5,6],[7,8,9]]
-# [1,2,3]
-# [4,5,6]
-# [7,8,9]
-print(np.sum(A)) #45
+if __name__ == "__main__":
+    X, y = spiral_data(samples=100, classes=3)
 
-print(np.sum(A,axis=0)) # [12,15,18]
-print(np.sum(A,axis=0,keepdims=True)) # [[12,15,18]]
+    # Defining the layers
+    layer_1 = Layer_Dense(2,3)
+    relu_1 = ReLu_Activation_Function()
+    layer_2 = Layer_Dense(3,3)
+    softmax_1 = Softmax_Activation_Function()
 
-print(np.sum(A,axis=1)) # [6,15,24]
-print(np.sum(A,axis=1,keepdims=True)) # [[6],[15],[24]]
+    # Creating the Neural Network
+    layer_1.forward(X)
+    relu_1.forward(layer_1.outputs)
+    layer_2.forward(relu_1.outputs)
+    softmax_1.forward(layer_2.outputs)
+    print(f"NN Output: {softmax_1.outputs[:5]}")
 
-print(A-np.max(A,axis=0,keepdims=True))
-# np.max: [[7,8,9]]
-# [-6,-6,-6]
-# [-3,-3,-3]
-# [0,0,0]
 
