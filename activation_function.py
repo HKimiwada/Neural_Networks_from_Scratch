@@ -36,7 +36,7 @@ softmax_1 = Softmax_Activation_Function()
 
 # Creating the Neural Network
 layer_1.forward(X)
-relu_1(layer_1.outputs)
-layer_2(relu_1.outputs)
-softmax_1(layer_2.outputs)
-print(f"NN Output: {softmax_1.output[:5]}")
+relu_1.forward(layer_1.outputs)
+layer_2.forward(relu_1.outputs)
+softmax_1.forward(layer_2.outputs)
+print(f"NN Output: {softmax_1.outputs[:5]}")
