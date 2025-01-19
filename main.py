@@ -11,6 +11,7 @@ from activation_function import Softmax_Activation_Function
 nnfs.init()
 X, y = spiral_data(samples=100, classes=3)
 
+## Forward Pass Without Loss
 # Defining the layers
 layer_1 = Layer_Dense(2,3)
 relu_1 = ReLu_Activation_Function()
