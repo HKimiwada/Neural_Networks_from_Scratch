@@ -13,6 +13,7 @@ class ReLu_Activation_Function:
 # Subtract largest number in row to make sure softmax value isn't too large.
 
 # Softmax Activation Class
+# Softmax returns 33,333% for each color because the weights are set close to zero (0.01*weights)
 class Softmax_Activation_Function:
     def forward(self,inputs):
         exp_value = np.exp(inputs - np.max(inputs,axis=1,keepdims=True))

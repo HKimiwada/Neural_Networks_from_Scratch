@@ -28,7 +28,7 @@ softmax_1.forward(layer_2.outputs)
 loss = loss_function.calculate(softmax_1.outputs,y)
 print(f"Loss: {loss}")
 
-# Softmax returns 33,333% for each color because the weights are set close to zero (0.01*weights)
+
     
 
 
