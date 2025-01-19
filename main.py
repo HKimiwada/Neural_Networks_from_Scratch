@@ -1,5 +1,5 @@
-# Creating Neural Network from scratch (with only numpy for linear algebra)
-# Create Mock NN (Inputs+Neurons+Relu+Neurons+Softmax)
+# Creating Neural Network from scratch (using numpy for linear algebra)
+# main.py creates the neural network.
 import numpy as np
 import nnfs
 from nnfs.datasets import spiral_data
