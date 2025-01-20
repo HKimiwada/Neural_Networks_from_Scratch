@@ -17,11 +17,11 @@ class Categorical_CrossEntropy_Loss(Loss):
         y_pred_clipped = np.clip(y_pred,1e-7,1-1e-7)
         
         # 1D target (ex. [0,1,2]: for classification)
-        if len(y_true.shape) == 1:
+        if len(y_true.shape) == 1: # Categorical Cross Entropy Loss
             correct_confidences = y_pred_clipped[range(samples),y_true]
 
         # One-Hot Encoding
-        elif len(y_true.shape) == 2:
+        elif len(y_true.shape) == 2: # Sparse categorical cross entropy loss
             correct_confidences = np.sum(y_pred_clipped*y_true,axis=1)
         
         negative_log_likelihoods = -np.log(correct_confidences)
