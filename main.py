@@ -25,28 +25,30 @@ loss_activation = Softmax_Cross_Entropy_Loss()
 optimizer = Optimizer_GD()
 
 # Training Loop 
-dense1.forward(X)
-activation1.forward(dense1.outputs)
-dense2.forward(activation1.outputs)
-loss = loss_activation.forward(dense2.outputs,y)
+for epoch in range(10000):
+    dense1.forward(X)
+    activation1.forward(dense1.outputs)
+    dense2.forward(activation1.outputs)
+    loss = loss_activation.forward(dense2.outputs,y)
 
-predictions = np.argmax(loss_activation.outputs,axis=1)
-if len(y.shape) == 2:
-    y = np.argmax(y,axis=1)
-accuracy = np.mean(predictions == y)
-print("Accuracy: ", accuracy)
+    predictions = np.argmax(loss_activation.outputs,axis=1)
+    if len(y.shape) == 2:
+        y = np.argmax(y,axis=1)
+    accuracy = np.mean(predictions == y)
+    
+    if not epoch % 100:
+        print(f'epoch: {epoch}, ' +
+              f'acc: {accuracy:.3f}, ' +
+              f'loss: {loss:.3f}')
 
-# Backward Pass
-loss_activation.backward(loss_activation.outputs,y)
-dense2.backward(loss_activation.dinputs)
-activation1.backward(dense2.dinputs)
-dense1.backward(activation1.dinputs)
+    # Backward Pass
+    loss_activation.backward(loss_activation.outputs,y)
+    dense2.backward(loss_activation.dinputs)
+    activation1.backward(dense2.dinputs)
+    dense1.backward(activation1.dinputs)
 
-# Print Gradients
-print(dense1.dweights)
-print(dense1.dbiases)
-print(dense2.dweights)
-print(dense2.dbiases)
+    optimizer.update_params(dense1)
+    optimizer.update_params(dense2)
     
 
 
