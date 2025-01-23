@@ -15,7 +15,7 @@ X, y = spiral_data(samples=100, classes=3)
 ## Forward Pass Without Loss
 # Defining the layers
 layer_1 = Layer_Dense(2,3)
-relu_1 = ReLu_Activation_Function()
+relu_1 = ReLU_Activation_Function()
 layer_2 = Layer_Dense(3,3)
 softmax_1 = Softmax_Activation_Function()
 loss_function = Categorical_CrossEntropy_Loss()
