@@ -6,4 +6,4 @@ class Optimizer_GD:
     
     def update_params(self, layer):
         layer.weights += -self.learning_rate * layer.dweights
-        layer.bias += -self.learning_rate * layer.dbiases
+        layer.biases += -self.learning_rate * layer.dbiases
