@@ -5,7 +5,7 @@ import nnfs
 from nnfs.datasets import spiral_data
 
 from dense import Layer_Dense
-from activation_function import ReLu_Activation_Function
+from activation_function import ReLU_Activation_Function
 from activation_function import Softmax_Activation_Function
 from cross_entropy_loss import Categorical_CrossEntropy_Loss
 

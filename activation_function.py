@@ -4,9 +4,15 @@ from nnfs.datasets import spiral_data
 from dense import Layer_Dense
 
 # Activation Function: Introduces non-linearity in order to capture any type of function
-class ReLu_Activation_Function: 
+class ReLU_Activation_Function: 
     def forward(self, inputs):
+        self.inputs = inputs
         self.outputs = np.maximum(0,inputs) # ReLu 
+
+    def backward(self, dvalues):
+        # dinputs would stay the same, unless value smaller than 0.
+        self.dinputs = dvalues.copy()
+        self.dinputs[self.inputs <= 0] = 0
 
 # ReLu gives out all real-numbers (to transform to prob. use different activation function)
 # Softmax Activation Function: Transform output to probability (0,1)
