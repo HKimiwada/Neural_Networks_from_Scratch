@@ -15,10 +15,20 @@ class Layer_Dense:
        self.weights = 0.01 * np.random.randn(n_inputs, n_neurons) # Random sample from gaussian distribution, 0.01 to make data small
        self.biases = np.zeros((1,n_neurons))
     
+    # Forward Pass
     def forward(self, inputs):
         # Forward pass (Calculating output from input, weights, biases)
+        self.inputs = inputs
         self.outputs = np.dot(inputs, self.weights) + self.biases
-        
+
+    # Backward Pass
+    def backward(self, dvalues): 
+        # dvalues = dLoss/dOutput (from all forward layers)    
+        # Gradients of parameters
+        self.dweights = np.dot(self.inputs.T, dvalues)
+        self.dbiases = np.sum(dvalues,axis=0,keepdims=True)
+        self.dinputs = np.dot(dvalues,self.weights.T)
+
 if __name__ == "__main__":
     # Testing Dense Layer Class:
     # Create Dataset
