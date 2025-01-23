@@ -4,6 +4,7 @@ import numpy as np
 
 class Loss:
     # Calculates loss given model output and ground truth values
+    # Loss class extended to other specific loss classes
     def calculate(self,pred,true):
         losses = self.forward(pred,true)
         mean_loss = np.mean(losses)
@@ -26,6 +27,21 @@ class Categorical_CrossEntropy_Loss(Loss):
         
         negative_log_likelihoods = -np.log(correct_confidences)
         return negative_log_likelihoods # Have to get mean of array to optimize loss
+
+    def backward(self, dvalues, y_true):
+        # Number of samples
+        samples = len(dvalues)
+        # Nuble of labels in each sample
+        labels = len(dvalues[0])
+
+        # If labels are sparse, transform to one-hot vector
+        if len(y_true.shape) == 1:
+            y_true = np.eye(labels)[y_true]
+
+        # Calculate gradient
+        self.dinputs = -y_true / dvalues
+        # Normalize gradient
+        self.dinputs = self.dinputs / samples
 
 if __name__ == "__main__":
     softmax_outputs = np.array([[0.7,0.1,0.2],[0.1,0.5,0.4],[0.02,0.9,0.08]])
