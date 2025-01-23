@@ -1,6 +1,7 @@
 # Coding cross entropy loss = - Sum of P(true) * log(P(actual))
 # Testing cross entropy loss
 import numpy as np
+from activation_function import Softmax_Activation_Function
 
 class Loss:
     # Calculates loss given model output and ground truth values
@@ -41,6 +42,34 @@ class Categorical_CrossEntropy_Loss(Loss):
         # Calculate gradient
         self.dinputs = -y_true / dvalues
         # Normalize gradient
+        self.dinputs = self.dinputs / samples
+
+# Combine Softmax and Cross Entropy Loss for faster backward step
+class Softmax_Cross_Entropy_Loss:
+    # Create activation and loss function objects
+    def __init__(self):
+        self.activation = Softmax_Activation_Function()
+        self.loss = Categorical_CrossEntropy_Loss()
+    
+    # Forward Pass
+    def forward(self, inputs, y_true):
+        # Output layer's activation function
+        self.activation.forward(inputs)
+        self.outputs = self.activation.outputs
+        
+        # Calculate and return loss value
+        return self.loss.calculate(self.outputs,y_true)
+    
+    # Backward Pass
+    def backward(self, dvalues,y_true):
+        # Number of samples
+        samples = len(dvalues)
+        # Turn one-hot encodings to discrete values
+        if len(y_true.shape) == 2:
+            y_true = np.argmax(y_true, axis=1)
+        
+        self.dinputs = dvalues.copy()
+        self.dinputs[range(samples), y_true] -= 1
         self.dinputs = self.dinputs / samples
 
 if __name__ == "__main__":
