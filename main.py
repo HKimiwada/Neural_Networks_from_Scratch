@@ -25,7 +25,7 @@ loss_activation = Softmax_Cross_Entropy_Loss()
 optimizer = Optimizer_GD()
 
 # Training Loop 
-for epoch in range(10000):
+for epoch in range(10001):
     dense1.forward(X)
     activation1.forward(dense1.outputs)
     dense2.forward(activation1.outputs)
