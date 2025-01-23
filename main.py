@@ -10,16 +10,21 @@ from activation_function import ReLU_Activation_Function
 from activation_function import Softmax_Activation_Function
 from cross_entropy_loss import Categorical_CrossEntropy_Loss
 from cross_entropy_loss import Softmax_Cross_Entropy_Loss
+from optimizer import Optimizer_GD
 
 nnfs.init()
 X, y = spiral_data(samples=100, classes=3)
 # plt.scatter(X[:,0],X[:,1],c=y,cmap="brg")
 # plt.show()
 
-dense1 = Layer_Dense(2,3)
+# Define Classes
+dense1 = Layer_Dense(2,64)
 activation1 = ReLU_Activation_Function()
-dense2 = Layer_Dense(3,3)
+dense2 = Layer_Dense(64,3)
 loss_activation = Softmax_Cross_Entropy_Loss()
+optimizer = Optimizer_GD()
+
+# Training Loop 
 dense1.forward(X)
 activation1.forward(dense1.outputs)
 dense2.forward(activation1.outputs)
