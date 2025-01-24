@@ -26,7 +26,7 @@ dense1 = Layer_Dense(2,64)
 activation1 = ReLU_Activation_Function()
 dense2 = Layer_Dense(64,3)
 loss_activation = Softmax_Cross_Entropy_Loss()
-optimizer = Optimizer_GD()
+optimizer = Optimizer_GD(decay=1e-3)
 
 # Training Loop 
 for epoch in range(10001):
@@ -43,7 +43,8 @@ for epoch in range(10001):
     if not epoch % 100:
         print(f'epoch: {epoch}, ' +
               f'acc: {accuracy:.3f}, ' +
-              f'loss: {loss:.3f}')
+              f'loss: {loss:.3f}, ' +
+              f'lr: {optimizer.current_learning_rate}')
 
     # Backward Pass
     loss_activation.backward(loss_activation.outputs,y)
@@ -51,8 +52,10 @@ for epoch in range(10001):
     activation1.backward(dense2.dinputs)
     dense1.backward(activation1.dinputs)
 
+    optimizer.pre_update_params()
     optimizer.update_params(dense1)
     optimizer.update_params(dense2)
+    optimizer.post_update_params()
     
 
 
