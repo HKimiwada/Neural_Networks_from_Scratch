@@ -1,5 +1,9 @@
 # Creating Neural Network from scratch (using numpy for linear algebra)
 # main.py creates the neural network.
+
+# Problem statement: the dataset is dots in spiral form. There are several spirals. Each dot in the spiral is one of three colors.
+# Create NN to classify each dot. Eseentially, the input will be two dimensional (X,Y) and output is three dimensional.
+
 import numpy as np
 import nnfs
 from nnfs.datasets import spiral_data
