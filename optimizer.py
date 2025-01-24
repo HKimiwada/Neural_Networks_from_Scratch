@@ -1,5 +1,5 @@
 # File for Optimizers (Gradient Descent, Adam etc...)
-# Simple Gradien Descent Optimizer (w/learning rate decay)
+# Simple Gradien Descent Optimizer (w/learning rate decay) (+add momentum)
 class Optimizer_GD:
     def __init__(self, learning_rate=1, decay=0):
         self.learning_rate = learning_rate
