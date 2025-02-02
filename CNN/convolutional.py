@@ -24,3 +24,6 @@ class Convolutional:
                 self.output[i] += signal.convolve2d(input[j], self.kernels[i][j], "valid")
         
         return self.output
+    
+    def backward(self, output_gradient, learning_rate):
+        pass
