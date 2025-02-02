@@ -1,7 +1,7 @@
 import numpy as np
 import nnfs
 from nnfs.datasets import spiral_data
-from dense import Layer_Dense
+from MLP.dense import Layer_Dense
 
 # Activation Function: Introduces non-linearity in order to capture any type of function
 class ReLU_Activation_Function: 
