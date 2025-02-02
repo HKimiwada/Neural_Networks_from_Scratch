@@ -127,3 +127,5 @@ class Optimizer_RMSprop:
     
     def post_update_params(self):
         self.iterations += 1
+
+# Adam Optimizer (RMSprop + Momentum)
