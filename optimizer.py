@@ -1,4 +1,4 @@
-# File for Optimizers (Gradient Descent, Adam etc...)
+# File for Optimizers (Gradient Descent, SGD, Adagrad, RMSprop, Adam)
 import numpy as np
 
 # Gradient Descent Optimizer (w/learning rate decay) 
