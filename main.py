@@ -14,7 +14,7 @@ from activation_function import ReLU_Activation_Function
 from activation_function import Softmax_Activation_Function
 from cross_entropy_loss import Categorical_CrossEntropy_Loss
 from cross_entropy_loss import Softmax_Cross_Entropy_Loss
-from optimizer import Optimizer_GD
+from optimizer import Optimizer_Adam
 
 nnfs.init()
 X, y = spiral_data(samples=100, classes=3)
@@ -26,7 +26,7 @@ dense1 = Layer_Dense(2,64)
 activation1 = ReLU_Activation_Function()
 dense2 = Layer_Dense(64,3)
 loss_activation = Softmax_Cross_Entropy_Loss()
-optimizer = Optimizer_GD(decay=1e-3)
+optimizer = Optimizer_Adam(learning_rate=0.02, decay=1e-5)
 
 # Training Loop 
 for epoch in range(10001):
