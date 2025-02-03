@@ -26,4 +26,16 @@ class Convolutional:
         return self.output
     
     def backward(self, output_gradient, learning_rate):
-        pass
+        kernels_gradient = np.zeros(self.kernels_shape)
+        input_gradient = np.zeros(self.input_shape)
+
+        for i in range(self.depth):
+            for j in range(self.input_depth):
+                kernels_gradient[i, j] = signal.correlate2d(self.input[j], output_gradient[i], "valid")
+                input_gradient[j] += signal.convolve2d(output_gradient[i], self.kernels[i, j], "full")
+    
+        self.kernels -= learning_rate * kernels_gradient
+        self.biases -= learning_rate * output_gradient
+
+        return input_gradient
+
