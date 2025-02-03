@@ -9,12 +9,12 @@ import nnfs
 from nnfs.datasets import spiral_data
 import matplotlib.pyplot as plt
 
-from MLP.dense import Layer_Dense
-from MLP.activation_function import ReLU_Activation_Function
-from MLP.activation_function import Softmax_Activation_Function
-from MLP.cross_entropy_loss import Categorical_CrossEntropy_Loss
-from MLP.cross_entropy_loss import Softmax_Cross_Entropy_Loss
-from MLP.optimizer import Optimizer_Adam
+from dense import Layer_Dense
+from activation_function import ReLU_Activation_Function
+from activation_function import Softmax_Activation_Function
+from cross_entropy_loss import Categorical_CrossEntropy_Loss
+from cross_entropy_loss import Softmax_Cross_Entropy_Loss
+from optimizer import Optimizer_Adam
 
 nnfs.init()
 X, y = spiral_data(samples=100, classes=3)

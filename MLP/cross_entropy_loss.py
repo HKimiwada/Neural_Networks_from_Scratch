@@ -1,7 +1,7 @@
 # Coding cross entropy loss = - Sum of P(true) * log(P(actual))
 # Testing cross entropy loss
 import numpy as np
-from MLP.activation_function import Softmax_Activation_Function
+from activation_function import Softmax_Activation_Function
 
 class Loss:
     # Calculates loss given model output and ground truth values
