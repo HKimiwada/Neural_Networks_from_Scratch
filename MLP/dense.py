@@ -18,6 +18,7 @@ class Layer_Dense:
         # Forward pass (Calculating output from input, weights, biases)
         self.inputs = inputs
         self.outputs = np.dot(inputs, self.weights) + self.biases
+        return self.outputs
 
     # Backward Pass
     def backward(self, dvalues): 
@@ -26,6 +27,7 @@ class Layer_Dense:
         self.dweights = np.dot(self.inputs.T, dvalues)
         self.dbiases = np.sum(dvalues,axis=0,keepdims=True)
         self.dinputs = np.dot(dvalues,self.weights.T)
+        return self.dinputs
 
 if __name__ == "__main__":
     # Testing Dense Layer Class:
